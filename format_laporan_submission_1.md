@@ -75,7 +75,7 @@ Kelebihan AdaBoost adalah relatif lebih mudah untuk diimplementasikan dan waktu 
 
 Metrik yang digunakan untuk evaluasi model adalah MSE atau mean Squared Error dan R2score. MSE menghitung jumlah selisih kuadrat rata rata nilai sebenernya dengan prediksi dan R2score digunakan untuk menghitung nilai prediksi yang diperoleh setiap algoritma. Berdasarkan evaluasi model algoritma Knearest Negihbor (KNN) mendapatkan skor akurasi untuk memprediksi di -380% dan MSE nya pada data train sebesar 0,74787, data testnya 0,75894. Algoritma Random Forest mendapatkan skor untuk memprediksi di 99% dan MSE nya pada data train 0,000027, data test 0,000115. Algoritma Boosting mednapatkan skor akurasi untuk memprediksi di 98% dan mse data train 0,000161 data test 0,000166
 
-	train	                test
-KNN	0.074787	        0.075894
-RF	0.000027	        0.000115
-Boosting	0.000161	  0.000166
+	train	test
+KNN	0.074787	0.075894
+RF	0.000027	0.000115
+Boosting	0.000161	0.000166
