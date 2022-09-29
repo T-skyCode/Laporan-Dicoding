@@ -13,76 +13,69 @@ Saat ini penyewaan apartemen atau rumah berkembang begitu pesat. hal ini dikaren
 
 ## Business Understanding
 
-Pada bagian ini, kamu perlu menjelaskan proses klarifikasi masalah.
+Harga pernyewaan rumah atau apartemen berbeda-beda, hal ini difaktori oleh beberapa fitur khusus. fitur tersebut seperti tempat, berapa banyak kasur, ukuran rumah atau apartemen, berapa lantai. tidak adanya acuan harga pasti pada penyewaan rumah atau apartemen menyebabkan memerlukan sistem untuk memprediksi harga.
 
-Bagian laporan ini mencakup:
 
 ### Problem Statements
 
 Menjelaskan pernyataan masalah latar belakang:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+- Berapa harga penyewaan rumah atau apartemen dengan karateristik atau fitur tertentu?
+- dari serangkaian fitur yang ada, fitur apa yang paling berpengaruh terhadap harga penyewaan rumah atau apartemen?
+- 
 
 ### Goals
 
 Menjelaskan tujuan dari pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+- Mengetahui fitur yang paling berkorelasi dengan harga penyewaan rumah atau apartemen
+- membuat model machine learning yang dapat memprediksi harga penyewaan rumah atau apartemen seakurat mungkin berdasarkan fitur-fitur yang ada.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution statement. Misalnya, menggunakan dua atau lebih algoritma untuk mencapai solusi yang diinginkan atau melakukan improvement pada baseline model dengan hyperparameter tuning.
-    - Solusi yang diberikan harus dapat terukur dengan metrik evaluasi.
+### Solution statements
+- Menggunakan 2 atau lebih algoritma untuk melihat kefektifitasan algoritma mana yang memiliki akurasi paling baik dalam memprediksi harga penyewaan rumah atau apartemen.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
 
-Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Data yang digunakan untuk membuat model ini adalah House Rent Prediction Dataset. Dataset berisikan 4700+ rumah yang siap untuk disewakan. karakteristik pada dataset terdiri dari dua jenis fitur numerik dan fitur non numerik. karakteristik numerik adalah BHK, Rent, Size, Bathroom. Karakteristik non numerik adalah Floor, Area Type, Area Locality, City, Furnishing Status. Fitur fitur inilah yang akan digunakan untuk menemukan pola pada data sedangkan rent merupakan fitur target. dataset ini bersumber [kaggle.com] https://www.kaggle.com/datasets/iamsouravbanerjee/house-rent-prediction-dataset.
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data atau exploratory data analysis.
+ 
+### Variabel-variabel pada House Rent Prediction Dataset adalah sebagai berikut:
+- BHK : Berisikan banyaknya jumlah Bedrooms, Hall, Kitchen
+- Rent : Berisikan harga sewa rumah atau apartemen
+- Size : Berisikan luas dari rumah atau apartemen
+- Floor : Berisikan jumlah keseluruhan lantai pada rumah atau apartemen
+- Area Type : Berisikan tipe ukuran dari rumah atau apartemen
+- Area Locality : Berisikan lokalitas dari rumah atau apartemen
+- City : Berisikan wilayah kota pada rumah atau apartemen
+- Furnishing Status : Berisikan status perlengkapan rumah pada rumah atau apartemen
+- Bathroom : Berisikan banyaknnya kamar mandi pada rumah atau apartemen
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+Teknik data preparation yang digunakan pada pembuatan model ini adalah : 
+- encoding fitur categori
+data yang masih berbentuk kategori akan diubah menjadi data numerikal agar data dapat masuk ke pelatihan model.
+- Split dataset dengan train_test_split
+data akan dibagi menjadi data pelatihan dan data testing, data pelatihan akan dimasukan ke dalam pelatihan model lalu akan menghasilkan prediksi. untuk mengetes hasil prediksi itu digunakanlah data testing
+- Standarisasi
+proses ini akan membaut fitur data menjadi bentuk yang lebih mudah di diolah oleh model, data akan mengurangkan mean (nilai rata rata)  kemudian membaginya dengan standar deviasi untuk menggeser distribusi.
 
 ## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+Tahap ini akan mengembangkan model machine learning dengan tiga algoritma lalu kemudian akan dievaluasi mengenai performa masing masing algoritma dan menentukan mana yang memberikan hasil prediksi terbaik. Tiga algoritma tersebut :
+1. Knearest Negihbor (KNN) 
+Kelebihan KNN adalah pelatihan sangat cepat, sederhana dan mudah dipelajari, tahan terhadap data pelatihan yang memiliki derau, dan efektif jika data pelatihan besar.
+Kekurangan KNN adalah Nilai k bias, Komputasi kompleks, Keterbatasan memori, dan 4) Mudah tertipu dengan atribut yang tidak relevan.
+
+2. Random Forest (RF)
+Kelebihan RF adalah dapat mengatasi noise dan missing value serta dapat mengatasi data dalam jumlah yang besar
+Kekurangan RF adalah interpretasi yang sulit dan membutuhkan tuning model yang tepat untuk data.
+
+3. AdaBoosting Algoritma
+Kelebihan AdaBoost adalah relatif lebih mudah untuk diimplementasikan dan waktu pengujian yang relatif cepat sehingga cocok dipakai dalam implementasi kondisi real time.
 
 ## Evaluation
-Pada bagian ini anda perlu menyebutkan metrik evaluasi yang digunakan. Lalu anda perlu menjelaskan hasil proyek berdasarkan metrik evaluasi yang digunakan.
 
-Sebagai contoh, Anda memiih kasus klasifikasi dan menggunakan metrik **akurasi, precision, recall, dan F1 score**. Jelaskan mengenai beberapa hal berikut:
-- Penjelasan mengenai metrik yang digunakan
-- Menjelaskan hasil proyek berdasarkan metrik evaluasi
+Metrik yang digunakan untuk evaluasi model adalah MSE atau mean Squared Error dan R2score. MSE menghitung jumlah selisih kuadrat rata rata nilai sebenernya dengan prediksi dan R2score digunakan untuk menghitung nilai prediksi yang diperoleh setiap algoritma. Berdasarkan evaluasi model algoritma Knearest Negihbor (KNN) mendapatkan skor akurasi untuk memprediksi di -380% dan MSE nya pada data train sebesar 0,74787, data testnya 0,75894. Algoritma Random Forest mendapatkan skor untuk memprediksi di 99% dan MSE nya pada data train 0,000027, data test 0,000115. Algoritma Boosting mednapatkan skor akurasi untuk memprediksi di 98% dan mse data train 0,000161 data test 0,000166
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
-
-**---Ini adalah bagian akhir laporan---**
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
-
+	train	                test
+KNN	0.074787	        0.075894
+RF	0.000027	        0.000115
+Boosting	0.000161	  0.000166
