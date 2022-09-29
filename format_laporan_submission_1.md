@@ -2,7 +2,8 @@
 
 ## Domain Proyek
 
-Pada bagian ini, kamu perlu menuliskan latar belakang yang relevan dengan proyek yang diangkat.
+Saat ini penyewaan apartemen atau rumah berkembang begitu pesat. hal ini dikarenakan dengan pertumbuhan pendduk yang sedemikian pesatnya, penyewaan apartemen atau rumah adalah salah satu usaha yang bergerak dibidang jasa yang dapat membantu para travelling atau perjalanan bisnis untuk mendapatkan kenyamanan dan keamanan dalam berpergian. Selain itu tidak semua manusia mampu memenuhi kebutuhan papan dengan memliki rumah atau apartemen sendiri. keterbatasan pemenuhan kebutuhan primer itu disebabkan kondisi ekonomi yang semakin tinggi. oleh karena itu sewa rumah atau apartemen sebagai salah satu alternatif untuk orang yang belum memliki tempat tinggal. maka dari pemaparan diatas dibuat sebuah model predictive analysis house/apartement Rent yang bertujuan untuk memprediksi harga penyewaan apartemen atau rumah pada masa yang akan datang.
+
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Jelaskan mengapa dan bagaimana masalah tersebut harus diselesaikan
