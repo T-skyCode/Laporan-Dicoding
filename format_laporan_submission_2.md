@@ -68,6 +68,7 @@ Explorasi variabel Ratings yang berisikan informasi mengenai penilaian pada buku
 | 0 |   UserID   | 1149780 non-null | int64  |
 | 1 |    ISBN    | 1149780 non-null | object |
 | 2 | BookRating | 1149780 non-null | int64  |
+
 Berdasarkan output diatas, kita dapat mengetahui bahwa file ratings.csv berisikan range entri 1149780. Pada file ini berisikan 3 fitur yaitu UserID, ISBN, BookRating. Fitur UserID memiliki entri 1149780 dengan type data integer, fitur ISBN memiliki entri 1149780 dengan type data object, pada fitur BookRating memiliki entri 1149780 dengan type data integer.
 
 ### Variabel Users
@@ -77,6 +78,7 @@ Explorasi variabel Users yang berisikan informasi mengenai para pembaca, dengan 
 | 0 |  UserID  | 278858 non-null |  int64  |
 | 1 | Location | 278858 non-null |  object |
 | 2 |    Age   | 168096 non-null | float64 |
+
 Berdasarkan output diatas, kita dapat mengetahui bahwa file Users.csv berisikan range entri 278858. pada file ini berisikan 3 fitur yaitu UserID, Location dan Age. Pada fitur UserID memiliki entri 278858 dengan type data integer, fitur Location memiliki entri 278858 dengan type data object, fitur age memiliki entri 168096 dengan type data float64.
 
 ### Mengecek Nilai Unik
@@ -89,6 +91,7 @@ Explorasi pengecekan nilai unik pada fitur BooTitle, BookAuthor, Publisher, User
 |     Jumlah data banyaknya Publishers buku:     |  16808 |
 | Jumlah data Penilaian yang diberikan pengguna: | 105283 |
 |          Jumlah data profil pengguna:          | 278858 |
+
 Pada output diatas kita dapat melihat bahwa jumlah data banyaknya buku terdapat 242135, jumlah data banyaknya penulis terdapat 102024, jumlah data banyaknya publisher buku 16808, jumlah data penilaian yang diberikan pengguna terdapat 105283, jumlah data profil penggun terdapat 278858.
 
 ### Melakukan Penggabungan pada file
@@ -174,47 +177,96 @@ Disini kita berdasarkan output maka kita dapat melihat bahwa nilai 0 pada kolom 
 
 Dapat kita lihat pada output bahwa nilai 0 pada kolom atau fitur YearOfPublication sudah teratasi.
 
+### TF-IDF Vectorizer
+TF-IDF Vectorizer memiliki fungsi untuk menemukan representasi fitur penting dari buku, disini menggunakan TfidfVectorizer dari library sklearn. pada awal kita akan melakukan perhitungan pada fitur target yaitu fitur Author, lalu setelah itu kita akan melakukan fit lalu ditransformasikan ke bentuk matrix. Vector Tf-idf tersebut akan diubah menjadi matrix dengan fungsi .todense(). lalu kita akan menampilkan tf-Idf_matrix untuk melihat korelasi antara buku dan authornya.
+#### Menampikan TF-Idf_Matrix.
+
+|                                                      | krentz | lichtenstein | dumaine | horn | lasky | brewers | raleigh | devito | wangerin | renee | ... | golenbock |  al | milgram | weinman | heim | sisson | johnston | motter | deirdrie | lenkert |
+|-----------------------------------------------------:|-------:|-------------:|--------:|-----:|------:|--------:|--------:|-------:|---------:|------:|----:|----------:|----:|--------:|--------:|-----:|-------:|---------:|-------:|---------:|--------:|
+|                       BookTitle                      |        |              |         |      |       |         |         |        |          |       |     |           |     |         |         |      |        |          |        |          |         |
+|              Mara and Dann: An Adventure             |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|         Handbook for Boys : A Novel (Amistad)        |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+| The Complete Idiot's Guide to Football (2nd Edition) |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|  Zolar's Compendium of Occult Theories and Practices |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|                      Shabby Chic                     |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|      Britney Spears: The Unauthorized Biography      |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|                   The Phantom Major                  |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|         Love on the Dole (Modern Classics S.)        |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|                  Pooh's Workout Book                 |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+|                   Inimitable Jeeves                  |    0.0 |          0.0 |     0.0 |  0.0 |   0.0 |     0.0 |     0.0 |    0.0 |      0.0 |   0.0 | ... |       0.0 | 0.0 |     0.0 |     0.0 |  0.0 |    0.0 |      0.0 |    0.0 |      0.0 |     0.0 |
+
+
 ## Modeling
 
 Tahap ini kita membuat model dengan menggunakan Collaborative-Filtering dengan metode item-based-filtering dan User-based-filtering. Disini kita membuat model dengan sistem rekomendasi berdasarkan kepopuleran dan sistem rekomendasi menggunakan cosine similarity.
 <br>
 - Sistem Rekomendasi berdasarkan kepopuleran 
-pada sistem rekomendasi ini kita melakukan pemanggilan data pada BookRating, dimana kita melakukan pengelompokkan data dan pengurutan data tersebut berdasarkan yang paling banyak memiliki penilaian dari para pembaca. Kelebihan sistem rekomendasi ini buku yang direkomendasikan oleh sistem sudah pasti populer dan dibaca oleh banyak orang, sedangkan kekurangan dari sistem ini adalah para pembaca belum tentu relevan dan suka dikarenakan setiap orang memiliki seleranya masing-masing.
+<br>
+pada sistem rekomendasi ini kita melakukan pemanggilan data pada BookRating, dimana kita melakukan pengelompokkan data dan pengurutan data tersebut berdasarkan yang paling banyak memiliki rata-rata paling banyak berdasarkan penilaian dari pada pembaca. pada awal kita akan melakukan penghitungan ratincount untuk melihat berapa banyak orang yang memberikan penilaian pada suatu buku dengan fungsi .count(), lalu setelah itu kita melakukan perhitungan rata-rata pada suatu buku dengan fungsi .mean(). Setelah itu kita melakukan penggabungan dan melakukan pengurutan berdasarkan rata-rata penilaian. Kelebihan sistem rekomendasi ini buku yang direkomendasikan oleh sistem sudah pasti populer dan dibaca oleh banyak orang, sedangkan kekurangan dari sistem ini adalah para pembaca belum tentu relevan dan suka dikarenakan setiap orang memiliki seleranya masing-masing.
 
-|        |                                       BookTitle | RatingCount |
-|-------:|------------------------------------------------:|------------:|
-| 232274 |                                     Wild Animus |        2502 |
-| 193922 |                       The Lovely Bones: A Novel |        1295 |
-| 181200 |                               The Da Vinci Code |         898 |
-|  5271  |                                 A Painted House |         838 |
-| 196831 |                      The Nanny Diaries: A Novel |         828 |
-|  27650 |                           Bridget Jones's Diary |         815 |
-| 204081 |                         The Secret Life of Bees |         774 |
-|  52340 | Divine Secrets of the Ya-Ya Sisterhood: A Novel |         740 |
-| 201972 |             The Red Tent (Bestselling Backlist) |         723 |
-|  14298 |                             Angels &amp; Demons |         670 |
+#### Menampilkan 10 Rekomendasi buku terpopuler
 
-Disini kita melakukan pemanggilan 10 buku terpopuler atau 10 buku yang memiliki penilain terbanyak dari para pembaca.
+|    |                                         BookTitle |     BookAuthor | RatingCount | AvgRating |
+|---:|--------------------------------------------------:|---------------:|------------:|----------:|
+|  0 | Harry Potter and the Prisoner of Azkaban (Book 3) |  J. K. Rowling |         428 |  5.852804 |
+|  3 |      Harry Potter and the Goblet of Fire (Book 4) |  J. K. Rowling |         387 |  5.824289 |
+|  5 |    Harry Potter and the Sorcerer's Stone (Book 1) |  J. K. Rowling |         278 |  5.737410 |
+|  9 | Harry Potter and the Order of the Phoenix (Boo... |  J. K. Rowling |         347 |  5.501441 |
+| 13 |  Harry Potter and the Chamber of Secrets (Book 2) |  J. K. Rowling |         556 |  5.183453 |
+| 16 | The Hobbit : The Enchanting Prelude to The Lor... | J.R.R. TOLKIEN |         281 |  5.007117 |
+| 17 | The Fellowship of the Ring (The Lord of the Ri... | J.R.R. TOLKIEN |         368 |  4.948370 |
+| 26 | Harry Potter and the Sorcerer's Stone (Harry P... |  J. K. Rowling |         575 |  4.895652 |
+| 28 |    The Two Towers (The Lord of the Rings, Part 2) | J.R.R. TOLKIEN |         260 |  4.880769 |
+| 39 |                             To Kill a Mockingbird |     Harper Lee |         510 |  4.700000 |
+
+Disini kita melakukan rekomendasi 10 buku terpopuler atau 10 buku yang memiliki rata-rata penilaian terbanyak dari para pembaca. Berdasarkan output diatas maka buku dengan judul  Harry Potter and the Prisoner of Azkaban (Book 3) dan penulis J. K. Rowling adalah buku paling populer dikarenakan memiliki RatingCount 428 dan memiliki rata-rata pada penilain pembaca 5.852804.
 
 - Sistem Rekomendasi Cosine Similarity
+<br>
+Cosine Similarity kita akan melakukan penghitungan derajat kesamaan berdasarkan korelasi. Disini kita menggunakan fungsi cosine_similarity dari library sklearn. Pada awal kita akan melakukan perhitungan cosine_similarity dengan tfidf_matrix, setelah melakukan perhitungan dengan tfidf_matrix kita akan menampilkan dataframe hasil perhitungan tersebut untuk melihat korelasi antara buku.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+|                                BookTitle | Johnny Panic and the Bible of Dreams : Short Stories, Prose, and Diary Excerpts | Anthropology (10th Edition) | The last time I saw mother | Britney Spears: The Unauthorized Biography | The Hedge of Mist: A Book of the Keltiad (Tales of Arthur/Patricia Kennealy-Morrison, Vol 3) |
+|-----------------------------------------:|--------------------------------------------------------------------------------:|----------------------------:|---------------------------:|-------------------------------------------:|---------------------------------------------------------------------------------------------:|
+|              The Thorn Birds             |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|       Desert Song (Harper Monogram)      |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|               Hiroshima Joe              |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|          Jazz: A Listeners Guide         |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|           The Year of the Panda          |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|             The green ribbon             |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+| Diagrams for Living : The Bible Unveiled |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|                Black Light               |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|              Modern Baptists             |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+|                The matrix                |                                                                             0.0 |                         0.0 |                        0.0 |                                        0.0 |                                                                                          0.0 |
+
+lalu setelah itu kita akan membuat function book_recommendation yang digunakan untuk membuat rekomendasi buku berdasarkan perhitungan cosine similarity. kita akan menampilkan 5 rekomendasi buku berdasarkan buku The Levant Trilogy (Fortunes of War) dengan penulisnya Olivia Manning.
+
+#### Menampilkan 5 Rekomendasi buku
+|   |                 BookTitle |       BookAuthor |
+|--:|--------------------------:|-----------------:|
+| 0 |        The Balkan Trilogy |   Olivia Manning |
+| 1 |        The Levant Trilogy |   Olivia Manning |
+| 2 |      Young Wives: A Novel | Olivia Goldsmith |
+| 3 |            The Bestseller | Olivia Goldsmith |
+| 4 | Fashionably Late: A Novel | Olivia Goldsmith |
+
+Dapat kita lihat bahwa sistem ini dapat merekomendasikan 2 buku olivia manning lainnya, dikarenakan olivia manning hanya memiliki 3 buku. Maka dari itu sistem merekomendasikan buku dari olivia lainnya. Kelebihan sistem ini tidak terpengaruh pada panjang pendeknya suatu dokumen dan memiliki tingkat akurasi yang tinggi. kekurangan dari sistem ini adalah akan merekomendasikan nama yang mirip dengan penulis tersebut.
+
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+Kita akan melakukan evaluasi manual dengan precission, precission adalah merupakan rasio prediksi benar positif dibandingkan dengan keseluruhan hasil yang diprediksi positf. precission memiliki rumus p = # of our recommendations that are relevant / of item we recommend. 
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+#### Menampilkan 5 Rekomendasi buku pada Cosine Similarity
+|   |                 BookTitle |       BookAuthor |
+|--:|--------------------------:|-----------------:|
+| 0 |        The Balkan Trilogy |   Olivia Manning |
+| 1 |        The Levant Trilogy |   Olivia Manning |
+| 2 |      Young Wives: A Novel | Olivia Goldsmith |
+| 3 |            The Bestseller | Olivia Goldsmith |
+| 4 | Fashionably Late: A Novel | Olivia Goldsmith |
 
-**---Ini adalah bagian akhir laporan---**
+Berdasarkan hasil rekomendasi pada sistem cosine similarity kita dapat melihat bahwa sistem memberikan rekomendasi 2 dari 5 rekomendasi yang relevan, maka precission dari hasil rekomendasi ini adalah 40% atau 2/5 
 
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
 
 ## Sumber Pustaka
 [1] BIKI, Y. (n.d.). PENGARUH BIMBINGAN KLASIKAL TEKNIK BIBLIOKONSELING TERHADAP MINAT MEMBACA SISWA KELAS XDI SMA NEGERI 2 GORONTALO. Universitas Negeri Gorontalo.
